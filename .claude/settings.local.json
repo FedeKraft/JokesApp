@@ -1,7 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(find 'C:\\\\Users\\\\feder\\\\AndroidStudioProjects\\\\New folder\\\\JokesApp' -type f ! -path ./.git/*)"
-    ]
-  }
-}

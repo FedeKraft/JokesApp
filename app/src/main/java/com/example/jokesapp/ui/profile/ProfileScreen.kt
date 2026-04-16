@@ -20,7 +20,6 @@ import androidx.compose.material.icons.filled.ChevronRight
 import androidx.compose.material.icons.filled.DarkMode
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Language
-import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
@@ -34,22 +33,27 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.foundation.Image
+import com.example.jokesapp.R
+import com.example.jokesapp.ui.theme.JokesAppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ProfileScreen(outerPadding: PaddingValues = PaddingValues()) {
-    var darkModeEnabled by remember { mutableStateOf(false) }
-
+fun ProfileScreen(
+    outerPadding: PaddingValues = PaddingValues(),
+    isDarkTheme: Boolean,
+    onDarkThemeChange: (Boolean) -> Unit
+) {
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text("Profile") })
+            TopAppBar(title = { Text(stringResource(R.string.nav_profile)) })
         }
     ) { innerPadding ->
         Column(
@@ -58,92 +62,92 @@ fun ProfileScreen(outerPadding: PaddingValues = PaddingValues()) {
                 .padding(innerPadding)
                 .padding(bottom = outerPadding.calculateBottomPadding())
                 .verticalScroll(rememberScrollState())
-                .padding(16.dp),
+                .padding(dimensionResource(R.dimen.padding_medium)),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_small)))
 
             Surface(
                 shape = CircleShape,
                 color = MaterialTheme.colorScheme.primaryContainer,
-                modifier = Modifier.size(100.dp)
+                modifier = Modifier.size(dimensionResource(R.dimen.avatar_size))
             ) {
-                Box(contentAlignment = Alignment.Center) {
-                    Icon(
-                        imageVector = Icons.Filled.Person,
-                        contentDescription = "Avatar",
-                        modifier = Modifier.size(60.dp),
-                        tint = MaterialTheme.colorScheme.onPrimaryContainer
-                    )
-                }
+                Image(
+                    painter = painterResource(id = R.drawable.ic_launcher_foreground),
+                    contentDescription = stringResource(R.string.cd_profile_avatar),
+                    contentScale = ContentScale.Fit,
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(dimensionResource(R.dimen.padding_small))
+                )
             }
 
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_medium)))
 
-            Text("Usuario", style = MaterialTheme.typography.headlineSmall)
+            Text(stringResource(R.string.profile_username), style = MaterialTheme.typography.headlineSmall)
             Text(
-                "usuario@example.com",
+                stringResource(R.string.profile_email),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
 
-            Spacer(modifier = Modifier.height(24.dp))
+            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_large)))
 
             ElevatedCard(modifier = Modifier.fillMaxWidth()) {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(vertical = 16.dp),
+                        .padding(vertical = dimensionResource(R.dimen.padding_medium)),
                     horizontalArrangement = Arrangement.SpaceEvenly
                 ) {
-                    StatItem(value = "24", label = "Jokes read")
-                    VerticalDivider(modifier = Modifier.height(48.dp))
-                    StatItem(value = "8", label = "Favorites")
-                    VerticalDivider(modifier = Modifier.height(48.dp))
-                    StatItem(value = "3", label = "Categories")
+                    StatItem(value = "24", label = stringResource(R.string.stat_jokes_read))
+                    VerticalDivider(modifier = Modifier.height(dimensionResource(R.dimen.avatar_size) / 2))
+                    StatItem(value = "8", label = stringResource(R.string.stat_favorites))
+                    VerticalDivider(modifier = Modifier.height(dimensionResource(R.dimen.avatar_size) / 2))
+                    StatItem(value = "3", label = stringResource(R.string.stat_categories))
                 }
             }
 
-            Spacer(modifier = Modifier.height(24.dp))
+            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_large)))
 
             Text(
-                "Settings",
+                stringResource(R.string.settings_title),
                 style = MaterialTheme.typography.titleMedium,
                 modifier = Modifier
                     .align(Alignment.Start)
-                    .padding(bottom = 8.dp)
+                    .padding(bottom = dimensionResource(R.dimen.padding_small))
             )
 
             ElevatedCard(modifier = Modifier.fillMaxWidth()) {
                 Column {
                     ListItem(
-                        headlineContent = { Text("Dark Mode") },
+                        headlineContent = { Text(stringResource(R.string.settings_dark_mode)) },
                         leadingContent = {
                             Icon(Icons.Filled.DarkMode, contentDescription = null)
                         },
                         trailingContent = {
                             Switch(
-                                checked = darkModeEnabled,
-                                onCheckedChange = { darkModeEnabled = it } // TODO: conectar a ViewModel
+                                checked = isDarkTheme,
+                                onCheckedChange = onDarkThemeChange
                             )
                         }
                     )
                     HorizontalDivider()
                     ListItem(
-                        headlineContent = { Text("Language") },
+                        headlineContent = { Text(stringResource(R.string.settings_language)) },
                         leadingContent = {
                             Icon(Icons.Filled.Language, contentDescription = null)
                         },
                         trailingContent = {
                             Text(
-                                "English",
+                                stringResource(R.string.settings_language_value),
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
                         }
                     )
                     HorizontalDivider()
                     ListItem(
-                        headlineContent = { Text("About") },
+                        headlineContent = { Text(stringResource(R.string.settings_about)) },
                         leadingContent = {
                             Icon(Icons.Filled.Info, contentDescription = null)
                         },
@@ -153,13 +157,13 @@ fun ProfileScreen(outerPadding: PaddingValues = PaddingValues()) {
                     )
                     HorizontalDivider()
                     ListItem(
-                        headlineContent = { Text("Version") },
+                        headlineContent = { Text(stringResource(R.string.settings_version)) },
                         leadingContent = {
                             Icon(Icons.Filled.Build, contentDescription = null)
                         },
                         trailingContent = {
                             Text(
-                                "1.0.0",
+                                stringResource(R.string.settings_version_value),
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
                         }
@@ -167,7 +171,7 @@ fun ProfileScreen(outerPadding: PaddingValues = PaddingValues()) {
                 }
             }
 
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_medium)))
         }
     }
 }
@@ -181,5 +185,21 @@ private fun StatItem(value: String, label: String) {
             style = MaterialTheme.typography.bodySmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )
+    }
+}
+
+@Preview(showBackground = true, name = "ProfileScreen - Light")
+@Composable
+private fun ProfileScreenLightPreview() {
+    JokesAppTheme(darkTheme = false) {
+        ProfileScreen(isDarkTheme = false, onDarkThemeChange = {})
+    }
+}
+
+@Preview(showBackground = true, name = "ProfileScreen - Dark")
+@Composable
+private fun ProfileScreenDarkPreview() {
+    JokesAppTheme(darkTheme = true) {
+        ProfileScreen(isDarkTheme = true, onDarkThemeChange = {})
     }
 }

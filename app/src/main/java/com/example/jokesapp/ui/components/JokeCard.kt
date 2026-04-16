@@ -19,30 +19,31 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SuggestionChip
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.tooling.preview.Preview
+import com.example.jokesapp.R
 import com.example.jokesapp.model.Joke
+import com.example.jokesapp.model.mockJokes
+import com.example.jokesapp.ui.theme.JokesAppTheme
 
 @Composable
 fun JokeCard(
     joke: Joke,
+    isFavorite: Boolean,
+    onFavoriteToggle: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    var isFavorite by remember { mutableStateOf(false) }
-
     ElevatedCard(
-        shape = RoundedCornerShape(16.dp),
+        shape = RoundedCornerShape(dimensionResource(R.dimen.card_corner_radius)),
         modifier = modifier
             .fillMaxWidth()
             .animateContentSize()
     ) {
-        Column(modifier = Modifier.padding(16.dp)) {
+        Column(modifier = Modifier.padding(dimensionResource(R.dimen.padding_medium))) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically
@@ -57,16 +58,21 @@ fun JokeCard(
                     },
                     modifier = Modifier.weight(1f)
                 )
-                IconButton(onClick = { isFavorite = !isFavorite }) {
+                IconButton(onClick = onFavoriteToggle) {
                     Icon(
                         imageVector = if (isFavorite) Icons.Filled.Favorite else Icons.Outlined.FavoriteBorder,
-                        contentDescription = if (isFavorite) "Remove from favorites" else "Add to favorites",
-                        tint = if (isFavorite) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant
+                        contentDescription = if (isFavorite) {
+                            stringResource(R.string.cd_remove_favorite)
+                        } else {
+                            stringResource(R.string.cd_add_favorite)
+                        },
+                        tint = if (isFavorite) MaterialTheme.colorScheme.primary
+                               else MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 }
             }
 
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_small)))
 
             when (joke) {
                 is Joke.Single -> {
@@ -80,7 +86,7 @@ fun JokeCard(
                         text = joke.setup,
                         style = MaterialTheme.typography.bodyLarge
                     )
-                    HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
+                    HorizontalDivider(modifier = Modifier.padding(vertical = dimensionResource(R.dimen.padding_small)))
                     Text(
                         text = joke.delivery,
                         style = MaterialTheme.typography.bodyLarge,
@@ -89,5 +95,29 @@ fun JokeCard(
                 }
             }
         }
+    }
+}
+
+@Preview(showBackground = true, name = "JokeCard - TwoPart")
+@Composable
+private fun JokeCardTwoPartPreview() {
+    JokesAppTheme {
+        JokeCard(
+            joke = mockJokes.first(),
+            isFavorite = false,
+            onFavoriteToggle = {}
+        )
+    }
+}
+
+@Preview(showBackground = true, name = "JokeCard - Favorited")
+@Composable
+private fun JokeCardFavoritedPreview() {
+    JokesAppTheme {
+        JokeCard(
+            joke = mockJokes[1],
+            isFavorite = true,
+            onFavoriteToggle = {}
+        )
     }
 }

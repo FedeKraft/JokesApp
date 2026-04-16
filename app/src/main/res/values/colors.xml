@@ -7,4 +7,12 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- Category colors -->
+    <color name="color_programming">#FF1976D2</color>
+    <color name="color_misc">#FF388E3C</color>
+    <color name="color_dark">#FF616161</color>
+    <color name="color_pun">#FFF57C00</color>
+    <color name="color_spooky">#FF7B1FA2</color>
+    <color name="color_christmas">#FFC62828</color>
 </resources>

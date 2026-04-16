@@ -35,11 +35,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
+import com.example.jokesapp.R
 import com.example.jokesapp.model.JokeCategory
 import com.example.jokesapp.model.mockJokes
 import com.example.jokesapp.ui.theme.ChristmasColor
 import com.example.jokesapp.ui.theme.DarkColor
+import com.example.jokesapp.ui.theme.JokesAppTheme
 import com.example.jokesapp.ui.theme.MiscColor
 import com.example.jokesapp.ui.theme.ProgrammingColor
 import com.example.jokesapp.ui.theme.PunColor
@@ -65,19 +69,19 @@ private val categoryItems = listOf(
 fun CategoriesScreen(outerPadding: PaddingValues = PaddingValues()) {
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text("Categories") })
+            TopAppBar(title = { Text(stringResource(R.string.nav_categories)) })
         }
     ) { innerPadding ->
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
             contentPadding = PaddingValues(
-                start = 16.dp,
-                end = 16.dp,
-                top = 16.dp,
-                bottom = 16.dp + outerPadding.calculateBottomPadding()
+                start = dimensionResource(R.dimen.padding_medium),
+                end = dimensionResource(R.dimen.padding_medium),
+                top = dimensionResource(R.dimen.padding_medium),
+                bottom = dimensionResource(R.dimen.padding_medium) + outerPadding.calculateBottomPadding()
             ),
-            horizontalArrangement = Arrangement.spacedBy(12.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp),
+            horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.card_spacing)),
+            verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.card_spacing)),
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding)
@@ -94,7 +98,7 @@ fun CategoryCard(item: CategoryItem) {
     val jokeCount = mockJokes.count { it.category == item.category }
 
     ElevatedCard(
-        shape = RoundedCornerShape(16.dp),
+        shape = RoundedCornerShape(dimensionResource(R.dimen.card_corner_radius)),
         modifier = Modifier
             .fillMaxWidth()
             .aspectRatio(1f)
@@ -102,25 +106,25 @@ fun CategoryCard(item: CategoryItem) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(16.dp),
+                .padding(dimensionResource(R.dimen.padding_medium)),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
             Surface(
-                shape = RoundedCornerShape(12.dp),
+                shape = RoundedCornerShape(dimensionResource(R.dimen.card_spacing)),
                 color = item.color.copy(alpha = 0.15f),
-                modifier = Modifier.size(64.dp)
+                modifier = Modifier.size(dimensionResource(R.dimen.category_icon_container))
             ) {
                 Box(contentAlignment = Alignment.Center) {
                     Icon(
                         imageVector = item.icon,
                         contentDescription = item.category.displayName,
                         tint = item.color,
-                        modifier = Modifier.size(36.dp)
+                        modifier = Modifier.size(dimensionResource(R.dimen.category_icon_size))
                     )
                 }
             }
-            Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.card_spacing)))
             Text(
                 text = item.category.displayName,
                 style = MaterialTheme.typography.titleMedium
@@ -131,5 +135,21 @@ fun CategoryCard(item: CategoryItem) {
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
         }
+    }
+}
+
+@Preview(showBackground = true, name = "CategoriesScreen")
+@Composable
+private fun CategoriesScreenPreview() {
+    JokesAppTheme {
+        CategoriesScreen()
+    }
+}
+
+@Preview(showBackground = true, name = "CategoryCard")
+@Composable
+private fun CategoryCardPreview() {
+    JokesAppTheme {
+        CategoryCard(item = categoryItems.first())
     }
 }

@@ -51,7 +51,6 @@ class JokeViewModel(application: Application) : AndroidViewModel(application) {
             try {
                 val apiCategory = when (category) {
                     JokeCategory.PROGRAMMING -> "Programming"
-                    JokeCategory.DARK        -> "Dark"
                     JokeCategory.PUN         -> "Pun"
                     JokeCategory.SPOOKY      -> "Spooky"
                     JokeCategory.CHRISTMAS   -> "Christmas"

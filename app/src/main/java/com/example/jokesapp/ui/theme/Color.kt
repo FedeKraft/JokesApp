@@ -13,7 +13,6 @@ val Pink40 = Color(0xFF7D5260)
 // Category colors
 val ProgrammingColor = Color(0xFF1976D2)
 val MiscColor = Color(0xFF388E3C)
-val DarkColor = Color(0xFF616161)
 val PunColor = Color(0xFFF57C00)
 val SpookyColor = Color(0xFF7B1FA2)
 val ChristmasColor = Color(0xFFC62828)

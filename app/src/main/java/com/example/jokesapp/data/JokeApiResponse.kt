@@ -17,7 +17,6 @@ data class JokeApiResponse(
 
         val cat = when (category) {
             "Programming" -> JokeCategory.PROGRAMMING
-            "Dark"        -> JokeCategory.DARK
             "Pun"         -> JokeCategory.PUN
             "Spooky"      -> JokeCategory.SPOOKY
             "Christmas"   -> JokeCategory.CHRISTMAS

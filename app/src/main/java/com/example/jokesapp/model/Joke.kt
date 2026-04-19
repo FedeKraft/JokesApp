@@ -3,7 +3,6 @@ package com.example.jokesapp.model
 enum class JokeCategory(val displayName: String) {
     PROGRAMMING("Programming"),
     MISC("Misc"),
-    DARK("Dark"),
     PUN("Pun"),
     SPOOKY("Spooky"),
     CHRISTMAS("Christmas")
@@ -49,12 +48,6 @@ val mockJokes = listOf(
         id = 4,
         category = JokeCategory.MISC,
         joke = "I told my wife she should embrace her mistakes. She gave me a hug."
-    ),
-    Joke.TwoPart(
-        id = 5,
-        category = JokeCategory.DARK,
-        setup = "My therapist told me I have trouble letting go of the past.",
-        delivery = "Hard to believe she said that. We haven't spoken in 15 years."
     ),
     Joke.Single(
         id = 6,

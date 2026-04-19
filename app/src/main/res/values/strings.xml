@@ -12,7 +12,6 @@
     <string name="filter_all">All</string>
     <string name="btn_get_joke">Get Joke</string>
     <string name="loading">Loading…</string>
-    <string name="error_loading">Could not load joke</string>
     <string name="btn_retry">Retry</string>
 
     <!-- Favorites screen -->

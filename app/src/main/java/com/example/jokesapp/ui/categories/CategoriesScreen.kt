@@ -19,7 +19,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AutoAwesome
 import androidx.compose.material.icons.filled.CardGiftcard
 import androidx.compose.material.icons.filled.Code
-import androidx.compose.material.icons.filled.DarkMode
 import androidx.compose.material.icons.filled.EmojiEmotions
 import androidx.compose.material.icons.filled.Shuffle
 import androidx.compose.material3.ElevatedCard
@@ -42,7 +41,6 @@ import com.example.jokesapp.R
 import com.example.jokesapp.model.JokeCategory
 import com.example.jokesapp.model.mockJokes
 import com.example.jokesapp.ui.theme.ChristmasColor
-import com.example.jokesapp.ui.theme.DarkColor
 import com.example.jokesapp.ui.theme.JokesAppTheme
 import com.example.jokesapp.ui.theme.MiscColor
 import com.example.jokesapp.ui.theme.ProgrammingColor
@@ -58,7 +56,6 @@ data class CategoryItem(
 private val categoryItems = listOf(
     CategoryItem(JokeCategory.PROGRAMMING, Icons.Filled.Code, ProgrammingColor),
     CategoryItem(JokeCategory.MISC, Icons.Filled.Shuffle, MiscColor),
-    CategoryItem(JokeCategory.DARK, Icons.Filled.DarkMode, DarkColor),
     CategoryItem(JokeCategory.PUN, Icons.Filled.EmojiEmotions, PunColor),
     CategoryItem(JokeCategory.SPOOKY, Icons.Filled.AutoAwesome, SpookyColor),
     CategoryItem(JokeCategory.CHRISTMAS, Icons.Filled.CardGiftcard, ChristmasColor)

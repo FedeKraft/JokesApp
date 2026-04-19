@@ -130,7 +130,7 @@ fun CategoryCard(item: CategoryItem) {
                 style = MaterialTheme.typography.titleMedium
             )
             Text(
-                text = "$jokeCount jokes",
+                text = stringResource(R.string.joke_count_label, jokeCount),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )

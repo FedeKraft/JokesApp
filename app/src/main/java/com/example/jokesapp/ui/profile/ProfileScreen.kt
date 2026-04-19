@@ -100,11 +100,11 @@ fun ProfileScreen(
                         .padding(vertical = dimensionResource(R.dimen.padding_medium)),
                     horizontalArrangement = Arrangement.SpaceEvenly
                 ) {
-                    StatItem(value = "24", label = stringResource(R.string.stat_jokes_read))
+                    StatItem(value = stringResource(R.string.stat_jokes_read_default), label = stringResource(R.string.stat_jokes_read))
                     VerticalDivider(modifier = Modifier.height(dimensionResource(R.dimen.avatar_size) / 2))
-                    StatItem(value = "8", label = stringResource(R.string.stat_favorites))
+                    StatItem(value = stringResource(R.string.stat_favorites_default), label = stringResource(R.string.stat_favorites))
                     VerticalDivider(modifier = Modifier.height(dimensionResource(R.dimen.avatar_size) / 2))
-                    StatItem(value = "3", label = stringResource(R.string.stat_categories))
+                    StatItem(value = stringResource(R.string.stat_categories_default), label = stringResource(R.string.stat_categories))
                 }
             }
 

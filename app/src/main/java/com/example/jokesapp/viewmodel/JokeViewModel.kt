@@ -1,7 +1,9 @@
 package com.example.jokesapp.viewmodel
 
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.jokesapp.R
 import com.example.jokesapp.data.JokeRepository
 import com.example.jokesapp.model.Joke
 import com.example.jokesapp.model.JokeCategory
@@ -20,7 +22,7 @@ sealed class JokeUiState {
     data class Error(val message: String) : JokeUiState()
 }
 
-class JokeViewModel : ViewModel() {
+class JokeViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository = JokeRepository()
 
@@ -62,7 +64,7 @@ class JokeViewModel : ViewModel() {
                 }
                 _uiState.value = JokeUiState.Success(joke)
             } catch (e: Exception) {
-                _uiState.value = JokeUiState.Error("No connection. Try again!")
+                _uiState.value = JokeUiState.Error(getApplication<Application>().getString(R.string.error_no_connection))
             }
         }
     }

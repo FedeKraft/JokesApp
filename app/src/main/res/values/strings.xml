@@ -38,4 +38,15 @@
     <string name="settings_version">Version</string>
     <string name="settings_version_value">1.0.0</string>
     <string name="cd_profile_avatar">Profile avatar</string>
+
+    <!-- Stats defaults -->
+    <string name="stat_jokes_read_default">24</string>
+    <string name="stat_favorites_default">8</string>
+    <string name="stat_categories_default">3</string>
+
+    <!-- Errors -->
+    <string name="error_no_connection">No connection. Try again!</string>
+
+    <!-- Categories screen -->
+    <string name="joke_count_label">%d jokes</string>
 </resources>

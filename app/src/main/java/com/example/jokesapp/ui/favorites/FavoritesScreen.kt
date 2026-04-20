@@ -63,7 +63,7 @@ private fun FavoritesScreenContent(
 ) {
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text("${stringResource(R.string.nav_favorites)} (${favoriteJokes.size})") })
+            TopAppBar(title = { Text(stringResource(R.string.nav_favorites_count, favoriteJokes.size)) })
         }
     ) { innerPadding ->
         if (favoriteJokes.isEmpty()) {

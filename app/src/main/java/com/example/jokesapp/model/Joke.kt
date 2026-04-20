@@ -1,11 +1,14 @@
 package com.example.jokesapp.model
 
-enum class JokeCategory(val displayName: String) {
-    PROGRAMMING("Programming"),
-    MISC("Misc"),
-    PUN("Pun"),
-    SPOOKY("Spooky"),
-    CHRISTMAS("Christmas")
+import androidx.annotation.StringRes
+import com.example.jokesapp.R
+
+enum class JokeCategory(@StringRes val labelRes: Int) {
+    PROGRAMMING(R.string.category_programming),
+    MISC(R.string.category_misc),
+    PUN(R.string.category_pun),
+    SPOOKY(R.string.category_spooky),
+    CHRISTMAS(R.string.category_christmas)
 }
 
 sealed class Joke {

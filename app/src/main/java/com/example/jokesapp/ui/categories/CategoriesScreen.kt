@@ -39,7 +39,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.jokesapp.R
 import com.example.jokesapp.model.JokeCategory
-import com.example.jokesapp.model.mockJokes
 import com.example.jokesapp.ui.theme.ChristmasColor
 import com.example.jokesapp.ui.theme.JokesAppTheme
 import com.example.jokesapp.ui.theme.MiscColor
@@ -63,7 +62,10 @@ private val categoryItems = listOf(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CategoriesScreen(outerPadding: PaddingValues = PaddingValues()) {
+fun CategoriesScreen(
+    outerPadding: PaddingValues = PaddingValues(),
+    onCategoryClick: (JokeCategory) -> Unit = {}
+) {
     Scaffold(
         topBar = {
             TopAppBar(title = { Text(stringResource(R.string.nav_categories)) })
@@ -84,17 +86,16 @@ fun CategoriesScreen(outerPadding: PaddingValues = PaddingValues()) {
                 .padding(innerPadding)
         ) {
             items(categoryItems) { item ->
-                CategoryCard(item = item)
+                CategoryCard(item = item, onClick = { onCategoryClick(item.category) })
             }
         }
     }
 }
 
 @Composable
-fun CategoryCard(item: CategoryItem) {
-    val jokeCount = mockJokes.count { it.category == item.category }
-
+fun CategoryCard(item: CategoryItem, onClick: () -> Unit = {}) {
     ElevatedCard(
+        onClick = onClick,
         shape = RoundedCornerShape(dimensionResource(R.dimen.card_corner_radius)),
         modifier = Modifier
             .fillMaxWidth()
@@ -115,7 +116,7 @@ fun CategoryCard(item: CategoryItem) {
                 Box(contentAlignment = Alignment.Center) {
                     Icon(
                         imageVector = item.icon,
-                        contentDescription = item.category.displayName,
+                        contentDescription = stringResource(item.category.labelRes),
                         tint = item.color,
                         modifier = Modifier.size(dimensionResource(R.dimen.category_icon_size))
                     )
@@ -123,11 +124,11 @@ fun CategoryCard(item: CategoryItem) {
             }
             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.card_spacing)))
             Text(
-                text = item.category.displayName,
+                text = stringResource(item.category.labelRes),
                 style = MaterialTheme.typography.titleMedium
             )
             Text(
-                text = stringResource(R.string.joke_count_label, jokeCount),
+                text = stringResource(R.string.category_tap_to_explore),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )

@@ -92,7 +92,7 @@ private fun HomeScreenContent(
                     FilterChip(
                         selected = selectedCategory == category,
                         onClick = { onSelectCategory(category) },
-                        label = { Text(category.displayName) }
+                        label = { Text(stringResource(category.labelRes)) }
                     )
                 }
             }

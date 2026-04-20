@@ -52,7 +52,7 @@ fun JokeCard(
                     onClick = {},
                     label = {
                         Text(
-                            text = joke.category.displayName,
+                            text = stringResource(joke.category.labelRes),
                             style = MaterialTheme.typography.labelSmall
                         )
                     },

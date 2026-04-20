@@ -11,6 +11,7 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
@@ -49,6 +50,7 @@ fun AppNavigation(
 ) {
     val navController = rememberNavController()
     val jokeViewModel: JokeViewModel = viewModel()
+    val favorites by jokeViewModel.favorites.collectAsState()
 
     Scaffold(
         bottomBar = {
@@ -83,7 +85,19 @@ fun AppNavigation(
                 HomeScreen(innerPadding, jokeViewModel)
             }
             composable(Screen.Categories.route) {
-                CategoriesScreen(innerPadding)
+                CategoriesScreen(
+                    outerPadding = innerPadding,
+                    onCategoryClick = { category ->
+                        jokeViewModel.selectCategory(category)
+                        navController.navigate(Screen.Home.route) {
+                            popUpTo(navController.graph.findStartDestination().id) {
+                                saveState = true
+                            }
+                            launchSingleTop = true
+                            restoreState = false
+                        }
+                    }
+                )
             }
             composable(Screen.Favorites.route) {
                 FavoritesScreen(
@@ -104,7 +118,8 @@ fun AppNavigation(
                 ProfileScreen(
                     outerPadding = innerPadding,
                     isDarkTheme = isDarkTheme,
-                    onDarkThemeChange = onDarkThemeChange
+                    onDarkThemeChange = onDarkThemeChange,
+                    favoritesCount = favorites.size
                 )
             }
         }

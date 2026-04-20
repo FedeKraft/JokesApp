@@ -20,6 +20,7 @@ import androidx.compose.material.icons.filled.ChevronRight
 import androidx.compose.material.icons.filled.DarkMode
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Language
+import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
@@ -49,7 +50,8 @@ import com.example.jokesapp.ui.theme.JokesAppTheme
 fun ProfileScreen(
     outerPadding: PaddingValues = PaddingValues(),
     isDarkTheme: Boolean,
-    onDarkThemeChange: (Boolean) -> Unit
+    onDarkThemeChange: (Boolean) -> Unit,
+    favoritesCount: Int = 0
 ) {
     Scaffold(
         topBar = {
@@ -66,6 +68,27 @@ fun ProfileScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_small)))
+
+            ElevatedCard(modifier = Modifier.fillMaxWidth()) {
+                Row(
+                    modifier = Modifier.padding(dimensionResource(R.dimen.padding_medium)),
+                    horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_small)),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Icon(
+                        imageVector = Icons.Filled.Lock,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.primary
+                    )
+                    Text(
+                        text = stringResource(R.string.profile_login_banner),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+            }
+
+            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_medium)))
 
             Surface(
                 shape = CircleShape,
@@ -84,7 +107,11 @@ fun ProfileScreen(
 
             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_medium)))
 
-            Text(stringResource(R.string.profile_username), style = MaterialTheme.typography.headlineSmall)
+            Text(
+                stringResource(R.string.profile_username),
+                style = MaterialTheme.typography.headlineSmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
             Text(
                 stringResource(R.string.profile_email),
                 style = MaterialTheme.typography.bodyMedium,
@@ -100,11 +127,11 @@ fun ProfileScreen(
                         .padding(vertical = dimensionResource(R.dimen.padding_medium)),
                     horizontalArrangement = Arrangement.SpaceEvenly
                 ) {
-                    StatItem(value = stringResource(R.string.stat_jokes_read_default), label = stringResource(R.string.stat_jokes_read))
+                    StatItem(value = stringResource(R.string.stat_unavailable), label = stringResource(R.string.stat_jokes_read))
                     VerticalDivider(modifier = Modifier.height(dimensionResource(R.dimen.avatar_size) / 2))
-                    StatItem(value = stringResource(R.string.stat_favorites_default), label = stringResource(R.string.stat_favorites))
+                    StatItem(value = favoritesCount.toString(), label = stringResource(R.string.stat_favorites))
                     VerticalDivider(modifier = Modifier.height(dimensionResource(R.dimen.avatar_size) / 2))
-                    StatItem(value = stringResource(R.string.stat_categories_default), label = stringResource(R.string.stat_categories))
+                    StatItem(value = stringResource(R.string.stat_unavailable), label = stringResource(R.string.stat_categories))
                 }
             }
 

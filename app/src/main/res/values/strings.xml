@@ -6,6 +6,7 @@
     <string name="nav_home">Home</string>
     <string name="nav_categories">Categories</string>
     <string name="nav_favorites">Favorites</string>
+    <string name="nav_favorites_count">Favorites (%d)</string>
     <string name="nav_profile">Profile</string>
 
     <!-- Home screen -->
@@ -25,10 +26,12 @@
 
     <!-- Profile screen -->
     <string name="profile_username">Usuario</string>
-    <string name="profile_email">usuario@example.com</string>
+    <string name="profile_email">usuario@ejemplo.com</string>
+    <string name="profile_login_banner">Inicio de sesión próximamente — los datos del perfil se sincronizarán al autenticarse.</string>
     <string name="stat_jokes_read">Jokes read</string>
     <string name="stat_favorites">Favorites</string>
     <string name="stat_categories">Categories</string>
+    <string name="stat_unavailable">—</string>
     <string name="settings_title">Settings</string>
     <string name="settings_dark_mode">Dark Mode</string>
     <string name="settings_language">Language</string>
@@ -38,14 +41,16 @@
     <string name="settings_version_value">1.0.0</string>
     <string name="cd_profile_avatar">Profile avatar</string>
 
-    <!-- Stats defaults -->
-    <string name="stat_jokes_read_default">24</string>
-    <string name="stat_favorites_default">8</string>
-    <string name="stat_categories_default">3</string>
+    <!-- Category names -->
+    <string name="category_programming">Programming</string>
+    <string name="category_misc">Misc</string>
+    <string name="category_pun">Pun</string>
+    <string name="category_spooky">Spooky</string>
+    <string name="category_christmas">Christmas</string>
+    <string name="category_tap_to_explore">Tap to explore</string>
 
     <!-- Errors -->
     <string name="error_no_connection">No connection. Try again!</string>
 
-    <!-- Categories screen -->
     <string name="joke_count_label">%d jokes</string>
 </resources>

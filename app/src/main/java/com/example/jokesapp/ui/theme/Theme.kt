@@ -1,58 +1,49 @@
 package com.example.jokesapp.ui.theme
 
-import android.app.Activity
-import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.dynamicDarkColorScheme
-import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.graphics.Color
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+    primary              = BrandGold,
+    onPrimary            = Color(0xFF1A1200),
+    primaryContainer     = Color(0xFF3D2E00),
+    onPrimaryContainer   = BrandGold,
+    secondary            = BrandOrange,
+    onSecondary          = Color(0xFF1A0800),
+    secondaryContainer   = Color(0xFF3D1800),
+    onSecondaryContainer = BrandOrange,
+    background           = BrandDark,
+    onBackground         = Color(0xFFEEEEEE),
+    surface              = BrandSurface,
+    onSurface            = Color(0xFFEEEEEE),
+    surfaceVariant       = BrandSurfaceVar,
+    onSurfaceVariant     = Color(0xFFAAAAAA),
+    outline              = Color(0xFF555555),
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
-
-    /* Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
-    onPrimary = Color.White,
-    onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-    */
+    primary              = Color(0xFF795700), // dark amber — 5.1:1 contrast on white
+    onPrimary            = Color.White,
+    primaryContainer     = Color(0xFFFFF4C2),
+    onPrimaryContainer   = Color(0xFF3D2E00),
+    secondary            = Color(0xFFBF4A1A), // darker orange — readable on white
+    onSecondary          = Color.White,
+    secondaryContainer   = Color(0xFFFFDDD0),
+    onSecondaryContainer = Color(0xFF3D1800),
 )
 
 @Composable
 fun JokesAppTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
     content: @Composable () -> Unit
 ) {
-    val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-        }
-
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
-    }
-
     MaterialTheme(
-        colorScheme = colorScheme,
+        colorScheme = if (darkTheme) DarkColorScheme else LightColorScheme,
         typography = Typography,
-        content = content
+        content = content,
     )
 }

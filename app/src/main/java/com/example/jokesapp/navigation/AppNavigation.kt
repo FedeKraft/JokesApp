@@ -3,8 +3,8 @@ package com.example.jokesapp.navigation
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -23,25 +23,21 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.jokesapp.R
-import com.example.jokesapp.ui.categories.CategoriesScreen
+import com.example.jokesapp.auth.AuthViewModel
 import com.example.jokesapp.ui.favorites.FavoritesScreen
 import com.example.jokesapp.ui.home.HomeScreen
 import com.example.jokesapp.ui.profile.ProfileScreen
+import com.example.jokesapp.ui.shop.ShopScreen
 import com.example.jokesapp.viewmodel.JokeViewModel
 
 sealed class Screen(val route: String, val labelRes: Int, val icon: ImageVector) {
-    object Home       : Screen("home",       R.string.nav_home,       Icons.Filled.Home)
-    object Categories : Screen("categories", R.string.nav_categories, Icons.Filled.List)
-    object Favorites  : Screen("favorites",  R.string.nav_favorites,  Icons.Filled.Favorite)
-    object Profile    : Screen("profile",    R.string.nav_profile,    Icons.Filled.Person)
+    object Home     : Screen("home",     R.string.nav_home,     Icons.Filled.Home)
+    object Shop     : Screen("shop",     R.string.nav_shop,     Icons.Filled.ShoppingCart)
+    object Favorites: Screen("favorites",R.string.nav_favorites,Icons.Filled.Favorite)
+    object Profile  : Screen("profile",  R.string.nav_profile,  Icons.Filled.Person)
 }
 
-private val bottomNavItems = listOf(
-    Screen.Home,
-    Screen.Categories,
-    Screen.Favorites,
-    Screen.Profile
-)
+private val bottomNavItems = listOf(Screen.Home, Screen.Shop, Screen.Favorites, Screen.Profile)
 
 @Composable
 fun AppNavigation(
@@ -50,7 +46,11 @@ fun AppNavigation(
 ) {
     val navController = rememberNavController()
     val jokeViewModel: JokeViewModel = viewModel()
+    val authViewModel: AuthViewModel = viewModel()
     val favorites by jokeViewModel.favorites.collectAsState()
+    val jokesRead by jokeViewModel.jokesRead.collectAsState()
+    val coins by jokeViewModel.coins.collectAsState()
+    val streak by jokeViewModel.streak.collectAsState()
 
     Scaffold(
         bottomBar = {
@@ -65,9 +65,7 @@ fun AppNavigation(
                         selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true,
                         onClick = {
                             navController.navigate(screen.route) {
-                                popUpTo(navController.graph.findStartDestination().id) {
-                                    saveState = true
-                                }
+                                popUpTo(navController.graph.findStartDestination().id) { saveState = true }
                                 launchSingleTop = true
                                 restoreState = true
                             }
@@ -77,27 +75,12 @@ fun AppNavigation(
             }
         }
     ) { innerPadding ->
-        NavHost(
-            navController = navController,
-            startDestination = Screen.Home.route
-        ) {
+        NavHost(navController = navController, startDestination = Screen.Home.route) {
             composable(Screen.Home.route) {
                 HomeScreen(innerPadding, jokeViewModel)
             }
-            composable(Screen.Categories.route) {
-                CategoriesScreen(
-                    outerPadding = innerPadding,
-                    onCategoryClick = { category ->
-                        jokeViewModel.selectCategory(category)
-                        navController.navigate(Screen.Home.route) {
-                            popUpTo(navController.graph.findStartDestination().id) {
-                                saveState = true
-                            }
-                            launchSingleTop = true
-                            restoreState = false
-                        }
-                    }
-                )
+            composable(Screen.Shop.route) {
+                ShopScreen(outerPadding = innerPadding, viewModel = jokeViewModel)
             }
             composable(Screen.Favorites.route) {
                 FavoritesScreen(
@@ -105,9 +88,7 @@ fun AppNavigation(
                     viewModel = jokeViewModel,
                     onGoFindJokes = {
                         navController.navigate(Screen.Home.route) {
-                            popUpTo(navController.graph.findStartDestination().id) {
-                                saveState = true
-                            }
+                            popUpTo(navController.graph.findStartDestination().id) { saveState = true }
                             launchSingleTop = true
                             restoreState = true
                         }
@@ -119,7 +100,11 @@ fun AppNavigation(
                     outerPadding = innerPadding,
                     isDarkTheme = isDarkTheme,
                     onDarkThemeChange = onDarkThemeChange,
-                    favoritesCount = favorites.size
+                    favoritesCount = favorites.size,
+                    jokesRead = jokesRead,
+                    coins = coins,
+                    streak = streak,
+                    authViewModel = authViewModel,
                 )
             }
         }

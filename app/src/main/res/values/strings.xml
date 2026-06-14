@@ -5,6 +5,7 @@
     <!-- Bottom nav labels -->
     <string name="nav_home">Home</string>
     <string name="nav_categories">Categories</string>
+    <string name="nav_shop">Shop</string>
     <string name="nav_favorites">Favorites</string>
     <string name="nav_favorites_count">Favorites (%d)</string>
     <string name="nav_profile">Profile</string>
@@ -25,13 +26,16 @@
     <string name="cd_remove_favorite">Remove from favorites</string>
 
     <!-- Profile screen -->
-    <string name="profile_username">Usuario</string>
-    <string name="profile_email">usuario@ejemplo.com</string>
-    <string name="profile_login_banner">Inicio de sesión próximamente — los datos del perfil se sincronizarán al autenticarse.</string>
+    <string name="profile_username">User</string>
+    <string name="profile_email">user@example.com</string>
+    <string name="profile_login_banner">Sign in to sync your favorites and profile across devices.</string>
+    <string name="profile_signed_in_as">Signed in as</string>
     <string name="stat_jokes_read">Jokes read</string>
     <string name="stat_favorites">Favorites</string>
     <string name="stat_categories">Categories</string>
     <string name="stat_unavailable">—</string>
+
+    <!-- Settings -->
     <string name="settings_title">Settings</string>
     <string name="settings_dark_mode">Dark Mode</string>
     <string name="settings_language">Language</string>
@@ -40,6 +44,28 @@
     <string name="settings_version">Version</string>
     <string name="settings_version_value">1.0.0</string>
     <string name="cd_profile_avatar">Profile avatar</string>
+
+    <!-- Social login -->
+    <string name="btn_sign_in_google">Sign in with Google</string>
+    <string name="btn_sign_out">Sign Out</string>
+
+    <!-- Biometric auth screen -->
+    <string name="auth_title">Secure Access</string>
+    <string name="auth_subtitle">Verify your identity to continue</string>
+    <string name="auth_continue">Continue</string>
+    <string name="auth_device_not_supported">Biometric authentication is not available on this device.</string>
+
+    <!-- Notification onboarding screen -->
+    <string name="notification_onboarding_title">Stay in the loop!</string>
+    <string name="notification_onboarding_description">Allow notifications so we can send you a daily joke.</string>
+    <string name="notification_onboarding_allow">Allow notifications</string>
+    <string name="notification_onboarding_not_now">Not now</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_name">Jokes</string>
+    <string name="notification_channel_desc">Joke reminders</string>
+    <string name="notification_title">Miss us? 😄</string>
+    <string name="notification_message">Come back and read a fresh joke!</string>
 
     <!-- Category names -->
     <string name="category_programming">Programming</string>
@@ -51,6 +77,28 @@
 
     <!-- Errors -->
     <string name="error_no_connection">No connection. Try again!</string>
+    <string name="spanish_jokes_unavailable">No hay chistes en español para esta categoría, mostrando en inglés 🤷</string>
+    <string name="auth_failed">Authentication failed. Try again.</string>
 
     <string name="joke_count_label">%d jokes</string>
+
+    <!-- Stats -->
+    <string name="stat_coins">Coins</string>
+
+    <!-- Shop screen -->
+    <string name="shop_title">Upgrades</string>
+    <string name="shop_subtitle">Last 10 seconds. No refunds.</string>
+    <string name="shop_btn_buy">Buy</string>
+    <string name="shop_btn_renew">Renew</string>
+    <string name="upgrade_owned">✓ Owned</string>
+
+    <!-- Shop upgrades -->
+    <string name="upgrade_chaos_mode_name">Chaos Mode</string>
+    <string name="upgrade_chaos_mode_desc">The button escapes 60% of the time. Completely useless. Buy it.</string>
+    <string name="upgrade_lucky_charm_name">Lucky Charm</string>
+    <string name="upgrade_lucky_charm_desc">More chances of EPIC and LEGENDARY jokes. More coins.</string>
+    <string name="upgrade_coin_doubler_name">Coin Doubler</string>
+    <string name="upgrade_coin_doubler_desc">x2 coins per joke. The smartest investment of your life.</string>
+    <string name="upgrade_coin_tripler_name">Coin Tripler</string>
+    <string name="upgrade_coin_tripler_desc">x3 coins per joke. Wall Street doesn\'t want you to know this.</string>
 </resources>

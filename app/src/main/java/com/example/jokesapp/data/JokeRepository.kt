@@ -12,6 +12,6 @@ class JokeRepository {
         .build()
         .create(JokeApiService::class.java)
 
-    suspend fun fetchJoke(category: String = "Any"): Joke =
-        service.getJoke(category).toJoke()
+    suspend fun fetchJoke(category: String = "Any", lang: String? = null): Joke =
+        service.getJoke(category, lang).toJoke()
 }

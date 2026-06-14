@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "399064302484",
+    "project_id": "jokesapp-84964",
+    "storage_bucket": "jokesapp-84964.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:399064302484:android:e4147178d42512b17b4581",
+        "android_client_info": {
+          "package_name": "com.example.jokesapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "399064302484-cacv8abf8c98b89f0m4aa8vvfk32ftua.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.jokesapp",
+            "certificate_hash": "69c4acb187deaa9933e1a446b21718ae751b690c"
+          }
+        },
+        {
+          "client_id": "399064302484-5u560mvpaackbreu2jj19834h0d6d23t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvXiuBznTIaWOGKM1WaGwy9tc38l0p08E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "399064302484-5u560mvpaackbreu2jj19834h0d6d23t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

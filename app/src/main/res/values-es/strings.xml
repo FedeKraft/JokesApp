@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">JokesApp</string>
+
+    <!-- Bottom nav labels -->
+    <string name="nav_home">Inicio</string>
+    <string name="nav_categories">Categorías</string>
+    <string name="nav_shop">Tienda</string>
+    <string name="nav_favorites">Favoritos</string>
+    <string name="nav_favorites_count">Favoritos (%d)</string>
+    <string name="nav_profile">Perfil</string>
+
+    <!-- Home screen -->
+    <string name="filter_all">Todos</string>
+    <string name="btn_get_joke">Obtener chiste</string>
+    <string name="loading">Cargando…</string>
+    <string name="btn_retry">Reintentar</string>
+
+    <!-- Favorites screen -->
+    <string name="no_favorites_title">Sin favoritos aún</string>
+    <string name="no_favorites_subtitle">¡Empezá a guardar los chistes que te gustan!</string>
+    <string name="btn_go_find_jokes">Buscar chistes</string>
+
+    <!-- Joke card -->
+    <string name="cd_add_favorite">Agregar a favoritos</string>
+    <string name="cd_remove_favorite">Quitar de favoritos</string>
+
+    <!-- Profile screen -->
+    <string name="profile_username">Usuario</string>
+    <string name="profile_email">usuario@ejemplo.com</string>
+    <string name="profile_login_banner">Iniciá sesión para sincronizar tus favoritos y perfil entre dispositivos.</string>
+    <string name="profile_signed_in_as">Sesión iniciada como</string>
+    <string name="stat_jokes_read">Chistes leídos</string>
+    <string name="stat_favorites">Favoritos</string>
+    <string name="stat_categories">Categorías</string>
+    <string name="stat_unavailable">—</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Ajustes</string>
+    <string name="settings_dark_mode">Modo oscuro</string>
+    <string name="settings_language">Idioma</string>
+    <string name="settings_language_value">Español</string>
+    <string name="settings_about">Acerca de</string>
+    <string name="settings_version">Versión</string>
+    <string name="settings_version_value">1.0.0</string>
+    <string name="cd_profile_avatar">Avatar de perfil</string>
+
+    <!-- Social login -->
+    <string name="btn_sign_in_google">Iniciar sesión con Google</string>
+    <string name="btn_sign_out">Cerrar sesión</string>
+
+    <!-- Biometric auth screen -->
+    <string name="auth_title">Acceso seguro</string>
+    <string name="auth_subtitle">Verificá tu identidad para continuar</string>
+    <string name="auth_continue">Continuar</string>
+    <string name="auth_device_not_supported">La autenticación biométrica no está disponible en este dispositivo.</string>
+
+    <!-- Notification onboarding screen -->
+    <string name="notification_onboarding_title">¡Quedate al día!</string>
+    <string name="notification_onboarding_description">Permitir notificaciones para enviarte un chiste diario.</string>
+    <string name="notification_onboarding_allow">Permitir notificaciones</string>
+    <string name="notification_onboarding_not_now">Ahora no</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_name">Chistes</string>
+    <string name="notification_channel_desc">Recordatorios de chistes</string>
+    <string name="notification_title">¿Nos extrañás? 😄</string>
+    <string name="notification_message">¡Volvé y leé un chiste nuevo!</string>
+
+    <!-- Category names -->
+    <string name="category_programming">Programación</string>
+    <string name="category_misc">Varios</string>
+    <string name="category_pun">Juego de palabras</string>
+    <string name="category_spooky">Terror</string>
+    <string name="category_christmas">Navidad</string>
+    <string name="category_tap_to_explore">Tocá para explorar</string>
+
+    <!-- Errors -->
+    <string name="error_no_connection">Sin conexión. ¡Intentá de nuevo!</string>
+    <string name="spanish_jokes_unavailable">No hay chistes en español para esta categoría, mostrando en inglés 🤷</string>
+    <string name="auth_failed">No se pudo validar la autenticación. Intentá de nuevo.</string>
+
+    <string name="joke_count_label">%d chistes</string>
+
+    <!-- Stats -->
+    <string name="stat_coins">Monedas</string>
+
+    <!-- Shop screen -->
+    <string name="shop_title">Mejoras</string>
+    <string name="shop_subtitle">Duran 10 segundos. Sin reembolsos.</string>
+    <string name="shop_btn_buy">Comprar</string>
+    <string name="shop_btn_renew">Renovar</string>
+    <string name="upgrade_owned">✓ Tenés</string>
+
+    <!-- Shop upgrades -->
+    <string name="upgrade_chaos_mode_name">Chaos Mode</string>
+    <string name="upgrade_chaos_mode_desc">El botón escapa el 60% del tiempo. Completamente inútil. Compralo.</string>
+    <string name="upgrade_lucky_charm_name">Lucky Charm</string>
+    <string name="upgrade_lucky_charm_desc">Más chances de ÉPICO y LEGENDARIO. Más monedas.</string>
+    <string name="upgrade_coin_doubler_name">Coin Doubler</string>
+    <string name="upgrade_coin_doubler_desc">x2 monedas por chiste. La inversión más inteligente de tu vida.</string>
+    <string name="upgrade_coin_tripler_name">Coin Tripler</string>
+    <string name="upgrade_coin_tripler_desc">x3 monedas por chiste. Wall Street no quiere que sepas esto.</string>
+</resources>
